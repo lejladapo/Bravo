@@ -6,7 +6,7 @@ export default function Navbar() {
     <View style={styles.container}>
       <View style={styles.content}> 
         <Text style={styles.text}>Homepage</Text>
-        <Text style={styles.text}>About us</Text>
+        <Text style={styles.text}>Shop</Text>
         <FontAwesome name="search" style={styles.icon} /> 
         <FontAwesome name="shopping-cart" style={styles.icon} />
       </View>
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'black',
     position: 'absolute',
-    top: 40,
+    bottom:0,
     left: 0,
     right: 0,
     alignItems: 'center',
