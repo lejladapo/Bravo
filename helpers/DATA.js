@@ -1,3 +1,4 @@
+export default DATA =
 [
     {"id":1,
     "brand":"Ray-Ban",
