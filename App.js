@@ -1,16 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navbar from './components/Navbar';
 import MainPage from './components/MainPage';
+import Login from './components/Login';
+import ShoppingPage from './components/ShoppingPage';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navbar></Navbar>
-    <View style={styles.content}>
-      <MainPage></MainPage>
-    </View>
-    </View>
+<>
+    
+   
+    <NavigationContainer>
+      
+      <Stack.Navigator>
+      <Stack.Screen name="default" component={MainPage} />
+      <Stack.Screen name="Login" component={Login}  />
+      <Stack.Screen name="ShoppingPage" component={ShoppingPage} />
+    
+    </Stack.Navigator>
+    </NavigationContainer>
+  
+    </> 
   );
 }
 

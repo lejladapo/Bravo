@@ -1,3 +1,4 @@
+export default Users =
 [
     {"id":1,"first_name":"Nanete","last_name":"Skowcraft","email":"nskowcraft0@livejournal.com","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ.3Thp81rDFrKXr3WrY1MyMnNK8kKoZBX9lg-JwFznR-M","is_auth":true},
     {"id":2,"first_name":"Dillon","last_name":"Broadberrie","email":"dbroadberrie1@tumblr.com","token":"eyJ0eXAiOiJKV1QKbasjsGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJhYmJhDacIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ.3Thp81rDFrKXr3WrY1MyMnNK8kKoZBX9lg-JwFznR-M","is_auth":false},
