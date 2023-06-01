@@ -3,10 +3,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Navbar from './components/Navbar';
 import MainPage from './components/MainPage';
 import Login from './components/Login';
 import ShoppingPage from './components/ShoppingPage';
+import AboutUsPage from './components/AbouUsPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +20,7 @@ export default function App() {
       <Stack.Navigator>
       <Stack.Screen name="default" component={MainPage} />
       <Stack.Screen name="Login" component={Login}  />
+      <Stack.Screen name='About Us' component={AboutUsPage} />
       <Stack.Screen name="ShoppingPage" component={ShoppingPage} />
     
     </Stack.Navigator>
