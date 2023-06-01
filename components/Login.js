@@ -6,7 +6,6 @@ import Users from '../helpers/USERS';
 
 export default function Login({navigation}) {
 
-    console.log(Users);
     const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     const handleFormSubmit = () => {

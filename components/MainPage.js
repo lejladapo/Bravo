@@ -20,6 +20,10 @@ export default function MainPage() {
     navigation.navigate('Login');
   };
 
+  const handleAboutUsClick = () => {
+    navigation.navigate('About Us');
+  }
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -44,7 +48,9 @@ export default function MainPage() {
         </View>
         <View style={styles.navbar}>
         <View style={styles.content}> 
-          <Text style={styles.href}>Homepage</Text>
+        <TouchableOpacity onPress={handleAboutUsClick}>
+        <Text style={styles.href}>About us</Text>
+        </TouchableOpacity>
           <TouchableOpacity onPress={handleShopClick}>
             <Text style={styles.href}>Shop</Text>
           </TouchableOpacity>
