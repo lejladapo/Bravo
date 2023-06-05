@@ -9,7 +9,7 @@ const images = [
   require('../assets/sunglasses.jpeg'),
 ];
 
-const texts = ['Text 1', 'Text 2', 'Text 3'];
+const texts = ['Ray-Ban', 'Gucci', 'Versace'];
 
 export default function MainPage() {
 
@@ -66,12 +66,11 @@ export default function MainPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent:'center',
       },
       image: {
         top:0,
         width:'100%',
-        height:300
+        height:'100%'
       },
       text: {
         color: 'white',

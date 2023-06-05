@@ -1,9 +1,16 @@
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, FlatList } from 'react-native';
+import Data from '../helpers/DATA';
+import ItemView from './ItemView';
+import { useState } from 'react';
 
 export default function ShoppingPage() {
+
     return(
         <View>
-            <Text>Display products from DATA.js file from helpers component</Text>
+            <FlatList data={Data}
+                alwaysBounceVertical={false}
+                renderItem={itemData => <ItemView item={itemData.item} />}
+            />
         </View>
     );
 }
