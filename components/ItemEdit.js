@@ -1,11 +1,31 @@
-import { ScrollView, View, Modal, Button, Text, StyleSheet, Image } from 'react-native';
+import {ScrollView, View, Modal, Button, Text, StyleSheet, Image, Pressable} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import {useEffect, useState} from "react";
+import Cart from "./Cart";
 
 export default function ItemEdit ({ item, onClose}) {
+
+    const [itemsInCart, setItemsInCart] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+
     const navigation = useNavigation();
+
     const addToCart = () => {
-          navigation.navigate('Cart');
-      };
+        addToList(item);
+        navigation.navigate('Cart');
+       };
+
+    const addToList = (item) => {
+         setItemsInCart(currentList =>[...currentList, item]);
+         console.log(itemsInCart);
+     }
+     
+     const removeFromList = () => {
+       
+     }
+    const showTaskInput = () => setModalVisible(true);
+    const hideTaskInput = () => setModalVisible(false);
+
   return (
     <Modal>
         <View style={styles.view}>
@@ -14,14 +34,15 @@ export default function ItemEdit ({ item, onClose}) {
           <Image source={require('../assets/rey-ban.webp')} style={{ width: 60, height: 60 }} />
           <Text style={styles.text}>{item.description}</Text>
           <Text style={styles.price}>{item.price}$</Text>
-          <Button style={styles.button} title='add to cart' onPress={addToCart}/>
+          <Button style={styles.button} title='add to cart' onPress={showTaskInput} />
+            <Cart visible={modalVisible}sendCart={item} onClose={hideTaskInput} />
         </View>
-      <Button style={styles.close} title='close' onPress={onClose} />
+        <Button style={styles.close} title='close' onPress={onClose} />
     </Modal>
   );
 }
+
 const styles = StyleSheet.create({
-    
     view:{
         justifyContent:'center',
         alignItems:'center',
