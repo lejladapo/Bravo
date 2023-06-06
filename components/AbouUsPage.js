@@ -42,10 +42,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 10,
     },
-    description: {
-      fontSize: 16,
-      lineHeight: 24,
-    },
     contentContainer: {
         alignItems: 'center',
       },
