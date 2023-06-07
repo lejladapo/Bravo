@@ -2,6 +2,7 @@ import {ScrollView, View, Modal, Button, Text, StyleSheet, Image, Pressable} fro
 import { useNavigation } from '@react-navigation/native';
 import {useEffect, useState} from "react";
 import Cart from "./Cart";
+import AddReview from './AddReview';
 
 export default function ItemEdit ({ item, onClose}) {
 
@@ -13,6 +14,10 @@ export default function ItemEdit ({ item, onClose}) {
     const addToCart = () => {
         addToList(item);
         navigation.navigate('Cart');
+       };
+
+    const addReview = () => {
+        navigation.navigate('AddReview');
        };
 
     const addToList = (item) => {
@@ -36,6 +41,7 @@ export default function ItemEdit ({ item, onClose}) {
           <Text style={styles.price}>{item.price}$</Text>
           <Button style={styles.button} title='add to cart' onPress={showTaskInput} />
             <Cart visible={modalVisible}sendCart={item} onClose={hideTaskInput} />
+            <Button style={styles.close} title='reviews' onPress={addReview} />
         </View>
         <Button style={styles.close} title='close' onPress={onClose} />
     </Modal>
