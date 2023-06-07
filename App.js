@@ -9,6 +9,8 @@ import ShoppingPage from './components/ShoppingPage';
 import AboutUsPage from './components/AbouUsPage';
 import Cart from './components/Cart';
 import ConfirmationPage from "./components/ConfirmationPage";
+import AddReview from "./components/AddReview";
+import GetReviews from "./components/GetReviews";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +28,8 @@ export default function App() {
       <Stack.Screen name="ShoppingPage" component={ShoppingPage} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Confirmation" component={ConfirmationPage} />
+      <Stack.Screen name="AddReview" component={AddReview} />
+      <Stack.Screen name="GetReviews" component={GetReviews} />
 
     </Stack.Navigator>
     </NavigationContainer>
