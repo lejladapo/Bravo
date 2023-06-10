@@ -1,9 +1,9 @@
-import {View, Text, TextInput, StyleSheet, Button} from "react-native";
+import {View, Text, TextInput, StyleSheet, Button, Image, Modal} from "react-native";
 import {firebase} from '../config';
 import {useState} from "react";
-import {useNavigation} from "@react-navigation/native";
+import GetReviews from "./GetReviews";
 
-export default function AddReview() {
+export default function AddReview({item, visible, onClose}) {
 
   const todoRef = firebase.firestore().collection('newData');
   const[addData, setAddData] = useState('');
@@ -11,6 +11,7 @@ export default function AddReview() {
   const addField = () => {
     if(addData && addData.length > 0) {
         const data = {
+            id_item: item.id,
             description: addData,
         };
         todoRef
@@ -23,17 +24,27 @@ export default function AddReview() {
             })
     }
   }
-    const navigation = useNavigation();
 
-  const goToReviews = () => {
-      navigation.navigate('GetReviews');
-
-  }
   return(
-      <View>
+      <>
+      <Modal visible={visible}>
+      <View style={styles.modal}>
           <TextInput placeholder='Add review' onChangeText={(description) => setAddData(description)} value={addData} />
             <Button title='add review' onPress={addField} />
-          <Button title='see all' onPress={goToReviews} />
+          <Button title='close' onPress={onClose} />
       </View>
+      </Modal>
+      <View>
+          <GetReviews sendItemId={item} />
+      </View>
+     </>
   )
 }
+const styles = StyleSheet.create({
+    modal:{
+        justifyContent:'center',
+        alignItems:'center',
+        margin: 30,
+        height:'60%'
+    },
+})
