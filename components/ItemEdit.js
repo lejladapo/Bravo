@@ -6,30 +6,13 @@ import AddReview from './AddReview';
 
 export default function ItemEdit ({ item, onClose}) {
 
-    const [itemsInCart, setItemsInCart] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [reviewVisible, setReviewVisible] = useState(false);
 
-    const navigation = useNavigation();
-
-    const addToCart = () => {
-        addToList(item);
-        navigation.navigate('Cart');
-       };
-
-    const addReview = () => {
-        navigation.navigate('AddReview');
-       };
-
-    const addToList = (item) => {
-         setItemsInCart(currentList =>[...currentList, item]);
-         console.log(itemsInCart);
-     }
-     
-     const removeFromList = () => {
-       
-     }
-    const showTaskInput = () => setModalVisible(true);
-    const hideTaskInput = () => setModalVisible(false);
+    const showCart = () => setModalVisible(true);
+    const hideCart = () => setModalVisible(false);
+    const showReview = () => setReviewVisible(true);
+    const hideReview = () => setReviewVisible(false);
 
   return (
     <Modal>
@@ -39,10 +22,14 @@ export default function ItemEdit ({ item, onClose}) {
           <Image source={require('../assets/rey-ban.webp')} style={{ width: 60, height: 60 }} />
           <Text style={styles.text}>{item.description}</Text>
           <Text style={styles.price}>{item.price}$</Text>
-          <Button style={styles.button} title='add to cart' onPress={showTaskInput} />
-            <Cart visible={modalVisible}sendCart={item} onClose={hideTaskInput} />
-            <Button style={styles.close} title='reviews' onPress={addReview} />
         </View>
+        <View>
+            <Button style={styles.button} title='add to cart' onPress={showCart} />
+            <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
+            <Button style={styles.button} title='post a review' onPress={showReview} />
+            <AddReview visible={reviewVisible} item={item} onClose={hideReview} />
+        </View>
+
         <Button style={styles.close} title='close' onPress={onClose} />
     </Modal>
   );
@@ -52,7 +39,7 @@ const styles = StyleSheet.create({
     view:{
         justifyContent:'center',
         alignItems:'center',
-        height:'94%'
+        height:'60%'
     },
     text:{
         margin:15,
