@@ -1,43 +1,99 @@
-import {View, Text, Modal, FlatList, Pressable, ScrollView, Button} from 'react-native';
+import {View, Text, Modal, FlatList, Pressable, ScrollView, Button, StyleSheet} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {useState} from "react";
 
 export default function Cart({sendCart, visible, onClose}) {
 
     const [counter, setCounter] = useState(1);
-
+    const [newPrice, setNewPrice] = useState(sendCart.price);
     const navigation = useNavigation();
 
     const goToConfirmation = () => {
         navigation.navigate('Confirmation');
     };
-
     const addItem = () => {
+    setNewPrice(newPrice+sendCart.price);
       setCounter(counter + 1);
     }
 
     const removeItem = () => {
-        if(counter == 1) {
-            onClose();
-        }
-      setCounter(counter - 1);
+        setNewPrice(newPrice-sendCart.price);
+        setCounter(counter - 1);
 
     }
 
     return(
         <Modal visible={visible} animationType='slide'>
-            <View>
-                <Text>{sendCart.type}</Text>
-                <Text>{sendCart.brand}</Text>
-                <Text>{sendCart.id}</Text>
-                <Text>{sendCart.price}</Text>
-                <Text>Quantity: {counter}</Text>
-                <Button title='+' onPress={addItem} />
-                <Button title='-' onPress={removeItem} />
-                <Button title='Buy' onPress={goToConfirmation} />
-                <Button title='Close' onPress={onClose} />
+            <View style={styles.centeredContainer}>
+            <View style={styles.container}>
+        <View style={styles.leftContainer}>
+          <Text style={styles.text}>{sendCart.type}</Text>
+          <Text style={styles.text}>{sendCart.brand}</Text>
+        </View>
+        <View style={styles.right}>
+        <Text style={styles.textCounter}>{counter}</Text>
+        <View style={styles.rightContainer}>
+        <View style={styles.buttonWrapper}>
+            <Button style={styles.button} title="+" onPress={addItem} />
+        </View>
+        <View style={styles.buttonWrapper}>
+            <Button style={styles.button} disabled={counter === 1} title="-" onPress={removeItem} />
+        </View>
+        </View>
+        </View>
+      </View>
+      
+        <Text style={styles.newPrice}>{newPrice}$</Text>
+      </View>
+        <View style={styles.buttonWrapperBottom}>
+            <Button title='Buy' onPress={goToConfirmation} />
             </View>
+        <Button title='Close' onPress={onClose} />
         </Modal>
-
     );
 }
+const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginVertical: 10,
+      marginHorizontal:30
+    },
+    leftContainer: {
+      flex: 1,
+    },
+    rightContainer:{
+        padding:10
+    },
+    text: {
+      fontSize: 16,
+      marginVertical: 5,
+    },
+    centeredContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    newPrice: {
+      fontSize: 24,
+      fontWeight: 'bold',
+    },
+    buttonWrapper:{
+        marginVertical:5
+    },
+    buttonWrapperBottom: {
+        marginVertical: 30,
+        marginHorizontal:50
+      },
+    right:{
+        flexDirection:'row',
+        alignItems:'center',
+    },
+    textCounter:{
+        marginRight:10,
+        fontSize:25,
+        fontWeight:'bold'
+    },
+    
+  });

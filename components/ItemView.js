@@ -12,21 +12,20 @@ const ItemView = ({item}) => {
 
     return(
         <>
-        <ScrollView>
+        
         <Pressable onPress={onPress} style={({ pressed }) => pressed && table.pressed}>
         <View style={table.row}>
           <View style={table.left}>
-            <Text style={table.cell}>{item.type}</Text>
-            <Text style={table.cell}>{item.brand}</Text>
-            <Text style={table.cell}>{item.id}</Text>
+            <Text style={table.cellLeft}>{item.type}</Text>
+            <Text style={table.cellLeft2}>{item.brand}</Text>
           </View>
           <View style={table.right}>
-            <Text style={table.cell}>{item.price}$</Text>
+            <Text style={table.cellRight}>{item.price}$</Text>
           </View>
         </View>
       </Pressable>
       {visible && <ItemEdit visible={visible} item={item} onClose={() => setVisible(false)} />}
-      </ScrollView>
+      
         </>
     )
 }

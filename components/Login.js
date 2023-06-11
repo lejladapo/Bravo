@@ -24,7 +24,7 @@ export default function Login({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text>Please log in to browse catalog</Text>
+      <Text style={styles.text}>Please log in to browse catalog</Text>
       <TextInput
         style={styles.input}
         placeholder="First Name"
@@ -37,8 +37,12 @@ export default function Login({navigation}) {
         value={email}
         onChangeText={(text) => setEmail(text)}
         />
-      <Button style={styles.button} disabled={!firstName || !email} title="Log in" onPress={handleFormSubmit} />
-      {!isAuthenticated && <Text style={styles.errorText}>Wrong first name and email combination.</Text>}
+      
+  <View style={styles.buttonWrapper}>
+    <Button style={styles.button} disabled={!firstName || !email} title="Log in" onPress={handleFormSubmit} />
+  </View>
+{!isAuthenticated && <Text style={styles.errorText}>Wrong first name and email combination.</Text>}
+
     </View>
   );
 }
@@ -47,19 +51,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   input: {
-    width: '80%',
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
     marginVertical: 10,
+    marginHorizontal:10,
     paddingHorizontal: 10,
   },
-  button: {
-    marginTop: 20,
-    width: '80%',
+  text:{
+    textAlign:'center',
+    marginVertical:10
+  },
+  buttonWrapper: {
+    marginVertical: 10,
+    marginHorizontal: 10,
   },
   errorText: {
     color: 'red',

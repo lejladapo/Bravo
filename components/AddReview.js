@@ -26,25 +26,60 @@ export default function AddReview({item, visible, onClose}) {
   }
 
   return(
-      <>
-      <Modal visible={visible}>
-      <View style={styles.modal}>
-          <TextInput placeholder='Add review' onChangeText={(description) => setAddData(description)} value={addData} />
-            <Button title='add review' onPress={addField} />
-          <Button title='close' onPress={onClose} />
-      </View>
+    <>
+      <Modal visible={visible} transparent>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <TextInput
+              style={styles.input}
+              placeholder='Add review'
+              onChangeText={(description) => setAddData(description)}
+              value={addData}
+            />
+            <View style={styles.buttonContainer}>
+              <View style={styles.buttonWrapper}>
+                <Button title='add review' onPress={addField} />
+              </View>
+              <View style={styles.buttonWrapper}>
+                <Button title='close' onPress={onClose} />
+              </View>
+            </View>
+          </View>
+        </View>
       </Modal>
-      <View>
-          <GetReviews sendItemId={item} />
+      <View style={styles.centeredContainer}>
+        <GetReviews sendItemId={item} />
       </View>
-     </>
-  )
+    </>
+  );
 }
+
 const styles = StyleSheet.create({
-    modal:{
-        justifyContent:'center',
-        alignItems:'center',
-        margin: 30,
-        height:'60%'
-    },
-})
+  
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 8,
+    width: '90%',
+  },
+  input: {
+    marginHorizontal: 10,
+    padding: 10,
+    borderWidth: 2,
+    borderColor: 'black',
+    opacity: 0.5,
+  },
+  buttonContainer: {
+    marginTop: 10,
+  },
+  buttonWrapper: {
+    marginVertical: 10,
+    marginHorizontal: 10,
+  },
+});

@@ -78,16 +78,18 @@ const styles = StyleSheet.create({
         lineHeight: 80,
         fontWeight: 'bold',
         backgroundColor: '#000000c0',
+        textAlign:'center'
       },
       navbar: {
         backgroundColor: 'black',
+        opacity:0.8,
         position: 'absolute',
         bottom:0,
         left: 0,
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 80,
+        paddingTop: 35,
         display: 'flex',
         flexDirection: 'row'
       },
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        bottom: 40,
+        bottom: 15,
         paddingHorizontal: 10,
       },
       href: {
