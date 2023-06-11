@@ -2,7 +2,7 @@ export default DATA =
 [
     {"id":1,
     "brand":"Ray-Ban",
-    "image":"http://dummyimage.com/224x100.png/5fa2dd/ffffff",
+    "image":"../assets/rey-ban.webp",
     "price":72,
     "type":"Sunglasses",
     "description":"Elevate your style with these sleek and trendy sunglasses. Designed to protect your eyes while making a fashion statement.",

@@ -35,15 +35,33 @@ export default function GetReviews({sendItemId}) {
 
 
     return(
-        <View>
-            <FlatList data={users}
-                      renderItem={({item}) => (
-                          <Pressable>
-                              <View>
-                                  <Text>{item.description}</Text>
-                              </View>
-                          </Pressable>
-                      )} />
+        <View style={styles.container}>
+  <FlatList
+    data={users}
+    renderItem={({ item }) => (
+      <Pressable>
+        <View style={styles.itemContainer}>
+          <Text style={styles.description}>{item.description}</Text>
         </View>
+      </Pressable>
+    )}
+  />
+</View>
+
     )
 }
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    itemContainer: {
+      marginVertical: 10,
+    },
+    description: {
+      textAlign: 'center',
+    },
+  });
+  
