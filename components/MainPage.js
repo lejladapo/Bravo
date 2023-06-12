@@ -24,6 +24,10 @@ export default function MainPage() {
     navigation.navigate('About Us');
   }
 
+  const handleOurTeamClick = () => {
+    navigation.navigate('Our Team');
+  }
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,8 +58,10 @@ export default function MainPage() {
           <TouchableOpacity onPress={handleShopClick}>
             <Text style={styles.href}>Shop</Text>
           </TouchableOpacity>
-          <FontAwesome name="search" style={styles.icon} /> 
-          <FontAwesome name="shopping-cart" style={styles.icon} />
+          <TouchableOpacity onPress={handleOurTeamClick}>
+            <Text style={styles.href}>Our Team</Text>
+          </TouchableOpacity>
+          
         </View>
       </View>
       </>

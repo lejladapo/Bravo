@@ -11,6 +11,7 @@ import Cart from './components/Cart';
 import ConfirmationPage from "./components/ConfirmationPage";
 import AddReview from "./components/AddReview";
 import GetReviews from "./components/GetReviews";
+import OurTeamPage from './components/OurTeam';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function App() {
       <Stack.Screen name="default" component={MainPage} />
       <Stack.Screen name="Login" component={Login}  />
       <Stack.Screen name='About Us' component={AboutUsPage} />
+      <Stack.Screen name='Our Team' component={OurTeamPage} />
       <Stack.Screen name="ShoppingPage" component={ShoppingPage} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Confirmation" component={ConfirmationPage} />
