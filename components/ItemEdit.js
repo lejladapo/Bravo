@@ -1,68 +1,106 @@
-import {ScrollView, View, Modal, Button, Text, StyleSheet, Image, Pressable, FlatList} from 'react-native';
+import { ScrollView, View, Modal, Button, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import Cart from "./Cart";
 import AddReview from './AddReview';
+import Swiper from 'react-native-swiper';
 
 export default function ItemEdit({ item, onClose, user }) {
 
-    const [modalVisible, setModalVisible] = useState(false);
-    const [reviewVisible, setReviewVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [reviewVisible, setReviewVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesVisible, setImagesVisible] = useState(false);
 
-    const showCart = () => setModalVisible(true);
-    const hideCart = () => setModalVisible(false);
-    const showReview = () => setReviewVisible(true);
-    const hideReview = () => setReviewVisible(false);
+  const showCart = () => setModalVisible(true);
+  const hideCart = () => setModalVisible(false);
+  const showReview = () => setReviewVisible(true);
+  const hideReview = () => setReviewVisible(false);
+
+  const handleImagePress = () => {
+    setImagesVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const close = () => {
+    setImagesVisible(false);
+  };
+
+  const handleSwiperIndexChanged = (index) => {
+    setCurrentIndex(index);
+  };
 
   return (
-    <Modal>
-  <FlatList
-    data={[item]} 
-    keyExtractor={(item) => item.id} 
-    renderItem={({ item }) => (
-      <View>
-        <Text style={styles.textTop}>{item.brand}</Text>
+    <Modal visible={true} onRequestClose={onClose}>
+      <FlatList
+        data={[item]}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <View>
+            <Text style={styles.textTop}>{item.brand}</Text>
 
-        <View style={styles.viewTop}>
-            <View style={styles.leftContainer}>
-            <Text style={styles.textRight}>{item.type}</Text>
+            <View style={styles.viewTop}>
+              <View style={styles.leftContainer}>
+                <Text style={styles.textRight}>{item.type}</Text>
+              </View>
+              <View style={styles.rightContainerTop}>
+                <Text style={styles.price}>{item.price}$</Text>
+              </View>
             </View>
-        <View style={styles.rightContainerTop}>
-            <Text style={styles.price}>{item.price}$</Text>
-        </View>
-        
-        </View>
-        <View style={styles.viewBottom}>
-            <View style={styles.leftContainer}>
-            <Text style={styles.descriptionHeading}>Description</Text>
-            <Text style={styles.text}>{item.description}</Text>
+            <View style={styles.viewBottom}>
+              <View style={styles.leftContainer}>
+                <Text style={styles.descriptionHeading}>Description</Text>
+                <Text style={styles.text}>{item.description}</Text>
+              </View>
+              <View style={styles.rightContainer}>
+              <TouchableOpacity onPress={handleImagePress}>
+              <Image
+                source={{ uri: item.image[0] }} // Use the first URL from the array
+                style={{ width: 200, height: 200 }}
+              />
+              </TouchableOpacity>
+              <Modal visible={imagesVisible}>
+                <Swiper
+                  style={styles.swiperContainer}
+                  loop={false}
+                  index={currentIndex}
+                  onIndexChanged={handleSwiperIndexChanged}
+                >
+                  {item.image.map((imageUrl, index) => (
+                    <View style={styles.imageContainer} key={index}>
+                      <Image
+                        source={{ uri: imageUrl }}
+                        style={{ width: 350, height: 350 }}
+                      />
+                    </View>
+                  ))}
+                </Swiper>
+                <Button onPress={close} title='close'/>
+              </Modal>
+
+              </View>
             </View>
-        <View style={styles.rightContainer}>
-        <Image source={require('../assets/rey-ban.webp')} style={{ width: 60, height: 60 }} />
-        </View>
-        
-        </View>
 
-        <View style={styles.buttonContainer}>
-          <View style={styles.buttonWrapper}>
-            <Button title='add to cart' onPress={showCart} />
+            <View style={styles.buttonContainer}>
+              <View style={styles.buttonWrapper}>
+                <Button title='add to cart' onPress={showCart} />
+              </View>
+              <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
+              <View style={styles.buttonWrapper}>
+                <Button title='post a review' onPress={showReview} />
+              </View>
+              <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
+            </View>
           </View>
-          <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
-          <View style={styles.buttonWrapper}>
-            <Button title='post a review' onPress={showReview} />
-          </View>
-          <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
-        </View>
-      </View>
-    )}
-  />
-<Button style={styles.close} title='close' onPress={onClose} />
-
-</Modal>
-
-
+        )}
+      />
+      <Button style={styles.close} title='close' onPress={onClose} />
+    </Modal>
   );
 }
+
 
 const styles = StyleSheet.create({
     viewTop: {
@@ -82,8 +120,8 @@ const styles = StyleSheet.create({
       viewBottom: {
         paddingTop:30,
         paddingBottom:30,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: 'column',
+        justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal:50,
         borderBottomWidth:2
@@ -127,5 +165,10 @@ const styles = StyleSheet.create({
       marginHorizontal: 50,
       marginVertical:10
     },
+    imageContainer:{
+      flex:1,
+      alignItems:'center',
+      justifyContent:'center'
+    }
   });
   
