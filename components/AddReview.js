@@ -25,6 +25,15 @@ export default function AddReview({item, visible, onClose}) {
     }
   }
 
+  const deleteField = (reviewId) => {
+    todoRef
+      .doc(reviewId)
+      .delete()
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return(
     <>
       <Modal visible={visible} transparent>
@@ -48,7 +57,7 @@ export default function AddReview({item, visible, onClose}) {
         </View>
       </Modal>
       <View style={styles.centeredContainer}>
-        <GetReviews sendItemId={item} />
+        <GetReviews sendItemId={item} deleteField={deleteField}  />
       </View>
     </>
   );

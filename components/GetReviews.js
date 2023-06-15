@@ -2,9 +2,9 @@ import {View, Text, TextInput, StyleSheet, Button, FlatList, Pressable} from "re
 import {firebase} from '../config';
 import {useEffect, useState} from "react";
 
-export default function GetReviews({sendItemId}) {
+export default function GetReviews({sendItemId, deleteField}) {
 
-    const itemsID = sendItemId.id;
+  const itemsID = sendItemId ? sendItemId.id : null;
     const [users, setUsers] = useState([]);
     const todoRef = firebase.firestore().collection('newData');
 
@@ -33,6 +33,9 @@ export default function GetReviews({sendItemId}) {
         fetchData();
     }, []);
 
+    const handleDelete = (reviewId) => {
+      deleteField(reviewId);
+    };
 
     return(
         <View style={styles.container}>
@@ -42,6 +45,12 @@ export default function GetReviews({sendItemId}) {
       <Pressable>
         <View style={styles.itemContainer}>
           <Text style={styles.description}>{item.description}</Text>
+            <Button
+                  title="Delete"
+                  onPress={() => handleDelete(item.id)}
+                  color="red"
+            />
+            
         </View>
       </Pressable>
     )}
