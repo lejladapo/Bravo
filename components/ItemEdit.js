@@ -1,6 +1,6 @@
-import {ScrollView, View, Modal, Button, Text, StyleSheet, Image, Pressable, FlatList} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import {useEffect, useState} from "react";
+import { View, Modal, Text, StyleSheet, Image, FlatList} from 'react-native';
+import { Button } from 'react-native-elements';
+import { useState} from "react";
 import Cart from "./Cart";
 import AddReview from './AddReview';
 
@@ -45,18 +45,18 @@ export default function ItemEdit({ item, onClose, user }) {
 
         <View style={styles.buttonContainer}>
           <View style={styles.buttonWrapper}>
-            <Button title='add to cart' onPress={showCart} />
+            <Button buttonStyle={styles.button} title='Add to cart' onPress={showCart} />
           </View>
           <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
           <View style={styles.buttonWrapper}>
-            <Button title='post a review' onPress={showReview} />
+            <Button buttonStyle={styles.button} title='Post a review' onPress={showReview} />
           </View>
           <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
         </View>
       </View>
     )}
   />
-<Button style={styles.close} title='close' onPress={onClose} />
+<Button style={styles.close} title='Close' onPress={onClose} />
 
 </Modal>
 
@@ -127,5 +127,11 @@ const styles = StyleSheet.create({
       marginHorizontal: 50,
       marginVertical:10
     },
+    button: {
+      marginTop: 20,
+      paddingHorizontal: 30,
+      paddingVertical: 10,
+      borderRadius: 5,
+    }
   });
   

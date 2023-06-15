@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-
-import { View, TextInput, StyleSheet, Button, Text } from 'react-native';
+import { View, TextInput, StyleSheet, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import Users from '../helpers/USERS';
 
 export default function Login({navigation}) {
@@ -39,7 +38,7 @@ export default function Login({navigation}) {
         />
       
   <View style={styles.buttonWrapper}>
-    <Button style={styles.button} disabled={!firstName || !email} title="Log in" onPress={handleFormSubmit} />
+    <Button buttonStyle={styles.button} disabled={!firstName || !email} title="Log in" onPress={handleFormSubmit} />
   </View>
 {!isAuthenticated && <Text style={styles.errorText}>Wrong first name and email combination.</Text>}
 
@@ -59,10 +58,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal:10,
     paddingHorizontal: 10,
+    borderRadius: 10
   },
   text:{
     textAlign:'center',
-    marginVertical:10
+    marginVertical:10,
   },
   buttonWrapper: {
     marginVertical: 10,
@@ -72,4 +72,9 @@ const styles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
+  button: {
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 5,
+  }
 });
