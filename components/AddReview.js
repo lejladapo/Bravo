@@ -3,17 +3,21 @@ import {firebase} from '../config';
 import {useState} from "react";
 import GetReviews from "./GetReviews";
 
-export default function AddReview({item, visible, onClose}) {
+export default function AddReview({ item, visible, onClose, user }) {
 
   const todoRef = firebase.firestore().collection('newData');
   const[addData, setAddData] = useState('');
+  const [userId, setUserId] = useState('');
+
 
   const addField = () => {
-    if(addData && addData.length > 0) {
-        const data = {
-            id_item: item.id,
-            description: addData,
-        };
+    if (addData && addData.length > 0) {
+      const data = {
+        id_item: item.id,
+        description: addData,
+        userId: user.id, 
+      };
+      setUserId(user.id);
         todoRef
             .add(data)
             .then(() => {
@@ -24,6 +28,15 @@ export default function AddReview({item, visible, onClose}) {
             })
     }
   }
+
+  const deleteField = (reviewId) => {
+    todoRef
+      .doc(reviewId)
+      .delete()
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   return(
     <>
@@ -48,7 +61,7 @@ export default function AddReview({item, visible, onClose}) {
         </View>
       </Modal>
       <View style={styles.centeredContainer}>
-        <GetReviews sendItemId={item} />
+      <GetReviews sendItemId={item} deleteField={deleteField} user={user} />
       </View>
     </>
   );

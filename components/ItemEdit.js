@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import Cart from "./Cart";
 import AddReview from './AddReview';
 
-export default function ItemEdit ({ item, onClose}) {
+export default function ItemEdit({ item, onClose, user }) {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [reviewVisible, setReviewVisible] = useState(false);
@@ -51,7 +51,7 @@ export default function ItemEdit ({ item, onClose}) {
           <View style={styles.buttonWrapper}>
             <Button title='post a review' onPress={showReview} />
           </View>
-          <AddReview visible={reviewVisible} item={item} onClose={hideReview} />
+          <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
         </View>
       </View>
     )}

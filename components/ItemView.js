@@ -6,7 +6,7 @@ import {useNavigation} from "@react-navigation/native";
 import Cart from "./Cart";
 
 
-const ItemView = ({item}) => {
+const ItemView = ({ item, user }) => {
     const [visible, setVisible] = useState(false);
     const onPress = () => setVisible(true);
 
@@ -24,7 +24,7 @@ const ItemView = ({item}) => {
           </View>
         </View>
       </Pressable>
-      {visible && <ItemEdit visible={visible} item={item} onClose={() => setVisible(false)} />}
+      {visible && <ItemEdit visible={visible} item={item} user={user} onClose={() => setVisible(false)} />}
       
         </>
     )

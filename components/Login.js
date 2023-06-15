@@ -18,7 +18,7 @@ export default function Login({navigation}) {
     );
     setIsAuthenticated(!!user);
     if (user) {
-      navigation.navigate('ShoppingPage');
+      navigation.navigate('ShoppingPage', { user: user });
     }
   };
 
