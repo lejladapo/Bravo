@@ -1,6 +1,10 @@
-import { ScrollView, View, Modal, Button, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
+
+import { ScrollView, View, Modal, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from "react";
+
+import { Button } from 'react-native-elements';
+import { useState} from "react";
+
 import Cart from "./Cart";
 import AddReview from './AddReview';
 import Swiper from 'react-native-swiper';
@@ -83,21 +87,22 @@ export default function ItemEdit({ item, onClose, user }) {
               </View>
             </View>
 
-            <View style={styles.buttonContainer}>
-              <View style={styles.buttonWrapper}>
-                <Button title='add to cart' onPress={showCart} />
-              </View>
-              <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
-              <View style={styles.buttonWrapper}>
-                <Button title='post a review' onPress={showReview} />
-              </View>
-              <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
-            </View>
+        <View style={styles.buttonContainer}>
+          <View style={styles.buttonWrapper}>
+            <Button buttonStyle={styles.button} title='Add to cart' onPress={showCart} />
           </View>
-        )}
-      />
-      <Button style={styles.close} title='close' onPress={onClose} />
-    </Modal>
+          <Cart visible={modalVisible} sendCart={item} onClose={hideCart} />
+          <View style={styles.buttonWrapper}>
+            <Button buttonStyle={styles.button} title='Post a review' onPress={showReview} />
+          </View>
+          <AddReview visible={reviewVisible} item={item} user={user} onClose={hideReview} />
+        </View>
+      </View>
+    )}
+  />
+<Button style={styles.close} title='Close' onPress={onClose} />
+
+</Modal>
   );
 }
 
@@ -169,6 +174,14 @@ const styles = StyleSheet.create({
       flex:1,
       alignItems:'center',
       justifyContent:'center'
+    },
+
+    button: {
+      marginTop: 20,
+      paddingHorizontal: 30,
+      paddingVertical: 10,
+      borderRadius: 5,
+
     }
   });
   

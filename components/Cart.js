@@ -1,6 +1,7 @@
-import {View, Text, Modal, FlatList, Pressable, ScrollView, Button, StyleSheet} from 'react-native';
+import {View, Text, Modal, StyleSheet} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {useState} from "react";
+import { Button } from 'react-native-elements';
 
 export default function Cart({sendCart, visible, onClose}) {
 
@@ -46,9 +47,9 @@ export default function Cart({sendCart, visible, onClose}) {
         <Text style={styles.newPrice}>{newPrice}$</Text>
       </View>
         <View style={styles.buttonWrapperBottom}>
-            <Button title='Buy' onPress={goToConfirmation} />
+            <Button buttonStyle={styles.button} title='Buy' onPress={goToConfirmation} />
             </View>
-        <Button title='Close' onPress={onClose} />
+        <Button buttonStyle={styles.button} title='Close' onPress={onClose} />
         </Modal>
     );
 }
@@ -95,5 +96,10 @@ const styles = StyleSheet.create({
         fontSize:25,
         fontWeight:'bold'
     },
-    
+    button: {
+      marginTop: 20,
+      paddingHorizontal: 30,
+      paddingVertical: 10,
+      borderRadius: 5,
+    },
   });

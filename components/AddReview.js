@@ -1,4 +1,5 @@
-import {View, Text, TextInput, StyleSheet, Button, Image, Modal} from "react-native";
+import {View, Text, TextInput, StyleSheet, Image, Modal} from "react-native";
+import { Button } from 'react-native-elements';
 import {firebase} from '../config';
 import {useState} from "react";
 import GetReviews from "./GetReviews";
@@ -51,10 +52,10 @@ export default function AddReview({ item, visible, onClose, user }) {
             />
             <View style={styles.buttonContainer}>
               <View style={styles.buttonWrapper}>
-                <Button title='add review' onPress={addField} />
+                <Button buttonStyle={styles.button} title='Add review' onPress={addField} />
               </View>
               <View style={styles.buttonWrapper}>
-                <Button title='close' onPress={onClose} />
+                <Button buttonStyle={styles.button} title='Close' onPress={onClose} />
               </View>
             </View>
           </View>
@@ -83,11 +84,14 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   input: {
-    marginHorizontal: 10,
-    padding: 10,
-    borderWidth: 2,
-    borderColor: 'black',
-    opacity: 0.5,
+    
+      height: 50,
+      borderColor: 'gray',
+      borderWidth: 1,
+      marginVertical: 10,
+      marginHorizontal:10,
+      paddingHorizontal: 10,
+      borderRadius: 10
   },
   buttonContainer: {
     marginTop: 10,
@@ -96,4 +100,9 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 10,
   },
+  button: {
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 5,
+  }
 });
