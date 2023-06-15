@@ -62,6 +62,7 @@ export default function AddReview({ item, visible, onClose, user }) {
       </Modal>
       <View style={styles.centeredContainer}>
       <GetReviews sendItemId={item} deleteField={deleteField} user={user} />
+
       </View>
     </>
   );

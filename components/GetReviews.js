@@ -4,7 +4,9 @@ import {useEffect, useState} from "react";
 import USERS from "../helpers/USERS";
 export default function GetReviews({sendItemId, deleteField, user}) {
 
+
     const itemsID = sendItemId ? sendItemId.id : null;
+
     const [users, setUsers] = useState([]);
     const todoRef = firebase.firestore().collection('newData');
     const userId = user ? user.id : null; 
@@ -38,6 +40,7 @@ export default function GetReviews({sendItemId, deleteField, user}) {
     }, []);
 
     const handleDelete = (reviewId) => {
+
         deleteField(reviewId);
       };
 
@@ -69,6 +72,7 @@ export default function GetReviews({sendItemId, deleteField, user}) {
               </Pressable>
             )}
           />
+
         </View>
       );
     }
