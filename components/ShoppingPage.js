@@ -4,7 +4,7 @@ import ItemView from './ItemView';
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
 import {useNavigation} from "@react-navigation/native";
-
+import { useRoute } from '@react-navigation/native';
 
 const getFilteredItems = (query, items) => {
   if (!query) {
@@ -13,12 +13,15 @@ const getFilteredItems = (query, items) => {
   return items.filter((item) => item.brand.toLowerCase().includes(query.toLowerCase()));
 };
 
-export default function ShoppingPage() {
+export default function ShoppingPage({ navigation }) {
+  const route = useRoute();
+  const { user } = route.params;
   const [query, setQuery] = useState("");
   const filteredItems = getFilteredItems(query, Data);
 
   
-  const renderItemData = ({ item }) => <ItemView item={item} />;
+  const renderItemData = ({ item }) => <ItemView item={item} user={user} />;
+  
 
   return (
     <View style={styles.container}>
@@ -41,7 +44,6 @@ export default function ShoppingPage() {
       ) : (
         <FlatList
           data={Data}
-          alwaysBounceVertical={false}
           renderItem={renderItemData}
           keyExtractor={(item) => item.id.toString()}
         />
@@ -50,26 +52,29 @@ export default function ShoppingPage() {
   );
 }
 
-const styles = StyleSheet.create({
-    
-    inputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        padding: 10,
-        borderWidth: 2,
-        borderColor: 'black',
-        margin:10
-      },
-    input: {
-      marginHorizontal: 10,
-      padding: 10,
-      borderColor: 'black',
-      fontSize:15
-    },
-    icon: {
-        fontSize: 20,
-        color: 'black',
-        marginHorizontal: 20
-      },
-  });
+const styles = {
+  container: {
+    flex: 1,
+    paddingVertical: 10,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#e6e6e6',
+    borderRadius: 10,
+    marginHorizontal: 20,
+    marginBottom: 10,
+  },
+  icon: {
+    fontSize: 18,
+    marginRight: 10,
+    color: 'gray',
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: 'black',
+  },
+};
