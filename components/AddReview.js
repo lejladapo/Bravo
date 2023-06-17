@@ -1,4 +1,4 @@
-import {View, Text, TextInput, StyleSheet, Image, Modal} from "react-native";
+import {View, TextInput, StyleSheet, Modal} from "react-native";
 import { Button } from 'react-native-elements';
 import {firebase} from '../config';
 import {useState} from "react";

@@ -1,10 +1,7 @@
 import {View, Text, Pressable, ScrollView, Button} from 'react-native';
 import table from '../styles/table';
 import ItemEdit from './ItemEdit';
-import { useEffect, useState } from 'react';
-import {useNavigation} from "@react-navigation/native";
-import Cart from "./Cart";
-
+import { useState } from 'react';
 
 const ItemView = ({ item, user }) => {
     const [visible, setVisible] = useState(false);

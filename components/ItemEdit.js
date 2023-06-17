@@ -1,10 +1,6 @@
-
-import { ScrollView, View, Modal, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
+import { View, Modal, Text, StyleSheet, Image, TouchableOpacity, FlatList } from 'react-native';
 import { Button } from 'react-native-elements';
 import { useState} from "react";
-
 import Cart from "./Cart";
 import AddReview from './AddReview';
 import Swiper from 'react-native-swiper';
@@ -61,7 +57,7 @@ export default function ItemEdit({ item, onClose, user }) {
               <View style={styles.rightContainer}>
               <TouchableOpacity onPress={handleImagePress}>
               <Image
-                source={{ uri: item.image[0] }} // Use the first URL from the array
+                source={{ uri: item.image[0] }}
                 style={{ width: 200, height: 200 }}
               />
               </TouchableOpacity>

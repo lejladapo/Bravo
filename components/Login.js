@@ -40,7 +40,7 @@ export default function Login({navigation}) {
   <View style={styles.buttonWrapper}>
     <Button buttonStyle={styles.button} disabled={!firstName || !email} title="Log in" onPress={handleFormSubmit} />
   </View>
-{!isAuthenticated && <Text style={styles.errorText}>Wrong first name and email combination.</Text>}
+{!isAuthenticated && <Text style={styles.errorText}>Wrong first name and/or email combination.</Text>}
 
     </View>
   );
