@@ -1,9 +1,8 @@
-import {StyleSheet, Text, View, ImageBackground, FlatList, Button, TextInput} from 'react-native';
+import {View, FlatList, TextInput} from 'react-native';
 import Data from '../helpers/DATA';
 import ItemView from './ItemView';
 import { FontAwesome } from '@expo/vector-icons';
 import { useState } from 'react';
-import {useNavigation} from "@react-navigation/native";
 import { useRoute } from '@react-navigation/native';
 
 const getFilteredItems = (query, items) => {

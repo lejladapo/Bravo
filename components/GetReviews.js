@@ -1,9 +1,8 @@
-import {View, Text, TextInput, StyleSheet, Button, FlatList, Pressable} from "react-native";
+import {View, Text, StyleSheet, Button, FlatList, Pressable} from "react-native";
 import {firebase} from '../config';
 import {useEffect, useState} from "react";
 import USERS from "../helpers/USERS";
 export default function GetReviews({sendItemId, deleteField, user}) {
-
 
     const itemsID = sendItemId ? sendItemId.id : null;
 

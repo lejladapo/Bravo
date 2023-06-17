@@ -1,4 +1,4 @@
-import {View, Text, Modal, StyleSheet} from 'react-native';
+import {View, Text, Modal, StyleSheet, TextInput, Image} from 'react-native';
 import {useNavigation} from "@react-navigation/native";
 import {useState} from "react";
 import { Button } from 'react-native-elements';
@@ -12,6 +12,7 @@ export default function Cart({sendCart, visible, onClose}) {
     const goToConfirmation = () => {
         navigation.navigate('Confirmation');
     };
+
     const addItem = () => {
     setNewPrice(newPrice+sendCart.price);
       setCounter(counter + 1);
@@ -28,8 +29,16 @@ export default function Cart({sendCart, visible, onClose}) {
             <View style={styles.centeredContainer}>
             <View style={styles.container}>
         <View style={styles.leftContainer}>
-          <Text style={styles.text}>{sendCart.type}</Text>
-          <Text style={styles.text}>{sendCart.brand}</Text>
+            <View style={styles.image}>
+                <Image
+                    source={{ uri: sendCart.image[0] }}
+                    style={{ width: 85, height: 85 }}
+                />
+            </View>
+            <View style={styles.description}>
+                <Text style={styles.text}>{sendCart.type}</Text>
+                <Text style={styles.text}>{sendCart.brand}</Text>
+            </View>
         </View>
         <View style={styles.right}>
         <Text style={styles.textCounter}>{counter}</Text>
@@ -63,6 +72,11 @@ const styles = StyleSheet.create({
     },
     leftContainer: {
       flex: 1,
+        flexDirection: 'row',
+    },
+    description: {
+        justifyContent: 'center',
+        marginLeft: 10,
     },
     rightContainer:{
         padding:10

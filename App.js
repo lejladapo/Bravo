@@ -17,11 +17,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-<>
-    
-   
+    <>
     <NavigationContainer>
-      
       <Stack.Navigator>
       <Stack.Screen name="Home" component={MainPage} />
       <Stack.Screen name="Login" component={Login}  />
@@ -32,7 +29,6 @@ export default function App() {
       <Stack.Screen name="Confirmation" component={ConfirmationPage} />
       <Stack.Screen name="AddReview" component={AddReview} />
       <Stack.Screen name="GetReviews" component={GetReviews} />
-
     </Stack.Navigator>
     </NavigationContainer>
   
