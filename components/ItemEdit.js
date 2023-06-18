@@ -4,6 +4,7 @@ import { useState} from "react";
 import Cart from "./Cart";
 import AddReview from './AddReview';
 import Swiper from 'react-native-swiper';
+import * as Animatable from 'react-native-animatable';
 
 export default function ItemEdit({ item, onClose, user }) {
 
@@ -39,8 +40,16 @@ export default function ItemEdit({ item, onClose, user }) {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text style={styles.textTop}>{item.brand}</Text>
-
+            <Animatable.Text
+            animation={{
+              from: { opacity: 0, translateY: -30 },
+              to: { opacity: 1, translateY: 0 },
+            }}
+            duration={2000}
+            style={styles.textTop}
+          >
+            {item.brand}
+          </Animatable.Text>
             <View style={styles.viewTop}>
               <View style={styles.leftContainer}>
                 <Text style={styles.textRight}>{item.type}</Text>
