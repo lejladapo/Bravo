@@ -1,5 +1,10 @@
 # Bravo
 
+# Authentication
+Please login with one of the credentials:
+1. First name: Nanete, email: nskowcraft0@livejournal.com
+2. FIrst name: Donnie, email: dthewlis2@ning.com
+3. First name: Toma, email: tigoe6@yandex.ru
 
 ## Functional requirements
 
